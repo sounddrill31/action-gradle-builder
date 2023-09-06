@@ -5,7 +5,7 @@ on:
     description: Run it
     inputs:
       REPO:
-        description: "URL to repository"
+        description: "URL to repository(You can add branch support by -b branchname after the URL)"
         required: true
       REPO_NAME:
         description: "The name of your repository(must match URL)"

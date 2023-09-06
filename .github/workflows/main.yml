@@ -1,0 +1,45 @@
+name: Android CI
+
+on:
+  workflow_dispatch: 
+    description: Run it
+    inputs:
+      REPO:
+        description: "URL to repository"
+        required: true
+      REPO_NAME:
+        description: "The name of your repository(must match URL)"
+        required: true
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: set up JDK 11
+      uses: actions/setup-java@v3
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+        cache: gradle
+    - name: Initialize repo
+      run: |
+        git config --global user.name "sounddrill31"
+        git config --global user.email "sounddrill31@gmail.com"
+        git clone ${{ github.event.inputs.REPO }}
+        cd ${{ github.event.inputs.REPO_NAME }}
+      id: pwd
+
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+    - name: Build with Gradle
+      run: ./gradlew build
+    - name: Upload to Release
+      uses: xresloader/upload-to-github-release@v1
+      with:
+        file: "app/build/outputs/apk/*/*.apk"
+        name: ${{ github.run_id }}
+        tag_name: ${{ github.run_id }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

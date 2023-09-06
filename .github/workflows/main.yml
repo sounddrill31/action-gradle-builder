@@ -22,18 +22,20 @@ jobs:
       with:
         java-version: '11'
         distribution: 'temurin'
+        cache: gradle
     - name: Initialize repo
       run: |
         git config --global user.name "sounddrill31"
         git config --global user.email "sounddrill31@gmail.com"
-        git clone ${{ github.event.inputs.REPO }}
-        cd ${{ github.event.inputs.REPO_NAME }}
       id: pwd
 
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
-      run: ./gradlew build
+      run: |
+        ./gradlew build
+        git clone ${{ github.event.inputs.REPO }}
+        cd ${{ github.event.inputs.REPO_NAME }}
     - name: Upload to Release
       uses: xresloader/upload-to-github-release@v1
       with:

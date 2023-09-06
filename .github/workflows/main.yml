@@ -17,6 +17,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - name: Clone Repo
+      run: |
+        git clone ${{ github.event.inputs.REPO }} .
     - name: set up JDK 11
       uses: actions/setup-java@v3
       with:
@@ -34,8 +37,6 @@ jobs:
     - name: Build with Gradle
       run: |
         ./gradlew build
-        git clone ${{ github.event.inputs.REPO }} .
-       # cd ${{ github.event.inputs.REPO_NAME }}
     - name: Upload to Release
       uses: xresloader/upload-to-github-release@v1
       with:

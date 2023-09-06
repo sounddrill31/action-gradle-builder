@@ -34,8 +34,8 @@ jobs:
     - name: Build with Gradle
       run: |
         ./gradlew build
-        git clone ${{ github.event.inputs.REPO }}
-        cd ${{ github.event.inputs.REPO_NAME }}
+        git clone ${{ github.event.inputs.REPO }} .
+       # cd ${{ github.event.inputs.REPO_NAME }}
     - name: Upload to Release
       uses: xresloader/upload-to-github-release@v1
       with:

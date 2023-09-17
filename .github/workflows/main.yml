@@ -38,6 +38,7 @@ jobs:
         chmod +x gradlew
     - name: Build with Gradle
       run: |
+        cd ${{ github.event.inputs.REPO_NAME }}
         ./gradlew build
     - name: Upload to Release
       uses: xresloader/upload-to-github-release@v1

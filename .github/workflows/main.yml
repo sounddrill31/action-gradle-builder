@@ -41,7 +41,6 @@ jobs:
         sdk install gradle
     - name: Build with Gradle
       run: |
-        cd ${{ github.event.inputs.REPO_NAME }}
         gradle assembleDebug
     - name: Upload to Release
       uses: xresloader/upload-to-github-release@v1

@@ -46,8 +46,8 @@ jobs:
     - name: Upload to Release
       uses: xresloader/upload-to-github-release@v1
       with:
-        file: "app/build/outputs/apk/*/*.apk"
-        name: ${{ github.event.inputs.REPO_NAME }} ${{ github.run_id }}
+        file: " ${{ github.event.inputs.REPO_NAME }}/app/build/outputs/apk/*/*.apk"
+        default_release_name: ${{ github.event.inputs.REPO_NAME }} ${{ github.run_id }}
         tag_name: ${{ github.run_id }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

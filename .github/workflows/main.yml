@@ -43,8 +43,12 @@ jobs:
         cd ${{ github.event.inputs.REPO_NAME }}
           if [ -n "${{ github.event.inputs.GRADLE_VERSION }}" ]; then
               gradle wrapper --gradle-version ${{ github.event.inputs.GRADLE_VERSION }} --distribution-type all
+              ./gradlew --no-daemon build
+          elif [ -f "./gradlew" ]; then
+              ./gradlew --no-daemon build
+          else
+              gradle --no-daemon build
           fi
-        ./gradlew --no-daemon build
 
     - name: Upload to Release
       uses: xresloader/upload-to-github-release@v1

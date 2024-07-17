@@ -8,6 +8,10 @@ on:
       REPO_NAME:
         description: "The name of your repository(must match URL)"
         required: true
+      GRADLE_VERSION:
+        description: "Override Gradle version to use"
+        required: false
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -37,6 +41,9 @@ jobs:
     - name: Build with Gradle
       run: |
         cd ${{ github.event.inputs.REPO_NAME }}
+          if [ -n "${{ github.event.inputs.GRADLE_VERSION }}" ]; then
+              gradle wrapper --gradle-version ${{ github.event.inputs.GRADLE_VERSION }} --distribution-type all
+          fi
         gradle --no-daemon build
 
     - name: Upload to Release

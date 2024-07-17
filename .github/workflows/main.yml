@@ -42,7 +42,7 @@ jobs:
       run: |
         cd ${{ github.event.inputs.REPO_NAME }}
           if [ -n "${{ github.event.inputs.GRADLE_VERSION }}" ]; then
-              gradle wrapper --gradle-version ${{ github.event.inputs.GRADLE_VERSION }} --distribution-type all
+              gradle wrapper --gradle-version ${{ github.event.inputs.GRADLE_VERSION }}
               ./gradlew --no-daemon build
           elif [ -f "./gradlew" ]; then
               ./gradlew --no-daemon build

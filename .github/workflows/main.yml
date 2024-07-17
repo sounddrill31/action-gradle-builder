@@ -2,7 +2,6 @@ name: Android CI
 
 on:
   workflow_dispatch: 
-    description: Run it
     inputs:
       REPO:
         description: "URL to repository(You can add branch support by -b branchname after the URL)"
@@ -29,8 +28,8 @@ jobs:
         cache: gradle
     - name: Initialize repo
       run: |
-        git config --global user.name "sounddrill31"
-        git config --global user.email "sounddrill31@gmail.com"
+        git config --global user.name "${{ github.actor }}"
+        git config --global user.email "${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com"
       id: pwd
 
     - name: Set up gradle using SDKMAN!

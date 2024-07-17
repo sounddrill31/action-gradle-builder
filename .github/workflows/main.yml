@@ -41,7 +41,8 @@ jobs:
     - name: Build with Gradle
       run: |
         cd ${{ github.event.inputs.REPO_NAME }}
-        gradle assembleDebug --scan
+        echo "yes" | gradle build --scan
+        #gradle assembleDebug --scan
     - name: Upload to Release
       uses: xresloader/upload-to-github-release@v1
       with:

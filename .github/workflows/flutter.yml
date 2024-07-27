@@ -60,7 +60,7 @@ jobs:
         cd ${{ github.event.inputs.REPO_NAME }}
 
         echo "Starting Build"
-        flutter build apk
+        flutter build apk --debug
 
     - name: Upload to Release
       uses: xresloader/upload-to-github-release@v1

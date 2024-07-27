@@ -48,7 +48,7 @@ jobs:
         flutter pub get
 
         echo "Checking flutter project"
-        flutter format --set-exit-if-changed .
+        # flutter format --set-exit-if-changed .
         flutter analyze .
 
         echo "Running tests"

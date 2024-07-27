@@ -1,4 +1,4 @@
-name: Android CI
+name: Flutter CI
 on:
   workflow_dispatch: 
     inputs:

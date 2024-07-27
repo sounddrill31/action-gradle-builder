@@ -56,5 +56,6 @@ jobs:
         file: " ${{ github.event.inputs.REPO_NAME }}/app/build/outputs/apk/*/*.apk"
         default_release_name: ${{ github.event.inputs.REPO_NAME }} ${{ github.run_id }}
         tag_name: ${{ github.run_id }}
+        draft: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

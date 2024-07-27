@@ -57,6 +57,9 @@ jobs:
 
     - name: Build with Flutter
       run: |
+        cd ${{ github.event.inputs.REPO_NAME }}
+
+        echo "Starting Build"
         flutter build apk
 
     - name: Upload to Release

@@ -22,7 +22,7 @@ jobs:
     - uses: actions/checkout@v3
     - name: Clone Repo
       run: |
-        git clone ${{ github.event.inputs.REPO }}
+        git clone ${{ github.event.inputs.REPO }} --depth=1
         cd ${{ github.event.inputs.REPO_NAME }}
 
     - name: set up JDK 17

@@ -11,6 +11,9 @@ on:
       GRADLE_VERSION:
         description: "Override Gradle version to use"
         required: false
+      EXTRA:
+        description: "Commands to Run before Building"
+        required: false
 
 jobs:
   build:
@@ -40,6 +43,7 @@ jobs:
     - name: Build with Gradle
       run: |
         cd ${{ github.event.inputs.REPO_NAME }}
+        ${{ github.event.inputs.EXTRA }}
           if [ -n "${{ github.event.inputs.GRADLE_VERSION }}" ]; then
               gradle wrapper --gradle-version ${{ github.event.inputs.GRADLE_VERSION }}
               ./gradlew --no-daemon build

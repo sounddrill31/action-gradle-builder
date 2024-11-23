@@ -48,6 +48,7 @@ jobs:
               gradle wrapper --gradle-version ${{ github.event.inputs.GRADLE_VERSION }}
               ./gradlew --no-daemon build
           elif [ -f "./gradlew" ]; then
+              chmod +x gradlew
               ./gradlew --no-daemon build
           else
               gradle --no-daemon build

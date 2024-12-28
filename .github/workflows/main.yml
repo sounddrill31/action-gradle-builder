@@ -15,8 +15,8 @@ on:
         description: "Commands to Run before Building"
         required: false
       BUILD_TYPE:
-          description: "Build Type of the App"
-          required: false
+          description: "Build Type of the App(build, assemble, assembleDebug, etc)"
+          required: true
           default: assembleDebug
 
 jobs:
@@ -50,12 +50,12 @@ jobs:
         ${{ github.event.inputs.EXTRA }}
           if [ -n "${{ github.event.inputs.GRADLE_VERSION }}" ]; then
               gradle wrapper --gradle-version ${{ github.event.inputs.GRADLE_VERSION }}
-              ./gradlew --no-daemon build ${{ github.event.inputs.BUILD_TYPE }}
+              ./gradlew --no-daemon ${{ github.event.inputs.BUILD_TYPE }}
           elif [ -f "./gradlew" ]; then
               chmod +x gradlew
-              ./gradlew --no-daemon build ${{ github.event.inputs.BUILD_TYPE }}
+              ./gradlew --no-daemon ${{ github.event.inputs.BUILD_TYPE }}
           else
-              gradle --no-daemon build ${{ github.event.inputs.BUILD_TYPE }}
+              gradle --no-daemon ${{ github.event.inputs.BUILD_TYPE }}
           fi
 
     - name: Upload to Release
